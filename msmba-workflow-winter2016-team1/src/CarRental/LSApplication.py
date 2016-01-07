@@ -31,10 +31,10 @@ class LSApplication(RoleApplication):
         
         # Declare any tasks that this role is able to perform:
         # !!! Modify to use actual task name and name_fields:
-        self.register_sink_step("ConfirmedRental", self.prepare_drink_form_creator, name_fields=["sequence", "ID", "TypeOfCar"])
+        self.register_sink_step("ConfirmedRental", self.verify_id_form_creator, name_fields=["sequence", "ID", "TypeOfCar"])
 
 
-    def prepare_drink_form_creator(self, stepname, form):
+    def verify_id_form_creator(self, stepname, form):
         '''
         Defines the data entry form for the LS application.
         This form appears once the LS selects one of the pending orders from a list.
