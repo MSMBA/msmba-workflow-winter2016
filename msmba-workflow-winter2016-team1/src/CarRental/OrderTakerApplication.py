@@ -33,9 +33,9 @@ class OrderTakerApplication(RoleApplication):
         super(OrderTakerApplication, self).__init__(theflowname, "Agent") 
         # Declare any tasks that this role is able to perform:
         # !!! Modify to use actual name for this task...
-        self.register_source_step("Rental", self.take_drink_order_form_creator) 
+        self.register_source_step("Rental", self.car_order_form_creator) 
 
-    def take_drink_order_form_creator(self, stepname, form):
+    def car_order_form_creator(self, stepname, form):
         '''
         This method does the actual work of building the user interface.
         '''
