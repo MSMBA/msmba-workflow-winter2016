@@ -43,7 +43,7 @@ class OrderTakerApplication(RoleApplication):
         '''
         
         # !!! improve this text...
-        form.add_static_label('') 
+        form.add_html_label("<img src='http://www.eastexcollision.com/uploads/images/Enterprise-Rental.png'>") 
         form.add_static_label('Enter customer request details:') 
         # !!! Add at least two fields here, along with any additional static labels you need...
         form.add_field(Type.SHORTSTRING, "Name", labeltext="Customer Name", initial="Enter customer name")
@@ -51,7 +51,7 @@ class OrderTakerApplication(RoleApplication):
         form.add_field(Type.DATE, "Start", labeltext="Start Date") 
         form.add_field(Type.DATE, "End", labeltext="End Date")
         form.add_field(Type.BOOLEAN, "Insurance", labeltext="Insurance")
-        form.add_field(Type.CHOICE, "TypeOfCar", labeltext="Type of car", choices=['Luxury', 'Family', 'Truck', 'Economy','Sport'], initial='Luxury');
+        form.add_field(Type.CHOICE, "TypeOfCar", labeltext="Type of car", choices=['Luxury ($100/day)', 'Family ($60/day)', 'Truck ($100/day)', 'Economy ($40/day)','Sport ($150/day)'], initial='Luxury ($100/day)');
 
 if __name__ == '__main__':
     #starts up the OrderTakerApplication:

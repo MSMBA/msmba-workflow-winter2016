@@ -44,15 +44,31 @@ class CashierApplication(RoleApplication):
         datestart = form.task.get_field("Start")
         dateend = form.task.get_field("End")
         totaldays = self.bill_charge_from_creator(datestart,dateend)
+        typeofcar = form.task.get_field("TypeOfCar")
+        totalfee = 0
+        if(typeofcar == "Luxury ($100/day)"):
+            totalfee = totaldays*100
+        elif(typeofcar == "Family ($60/day)"):
+            totalfee = totaldays*60
+        elif(typeofcar == "Truck ($100/day)"):
+            totalfee = totaldays*100
+        elif(typeofcar == "Sport ($150/day)"):
+            totalfee = totaldays*150
+        else: #Economy
+            totalfee = totaldays*40
+        
         # !!! improve this text... 
-        form.add_static_label('Your fee is going to be: $' + str(totaldays*100))
+        form.add_html_label("<img src='http://www.credit-card-logos.com/images/multiple_credit-card-logos-1/credit_card_logos_10.gif'>") 
+        form.add_static_label('')
+        form.add_static_label('You are renting a ' + form.task.get_field("TypeOfCar")+ " car for " + str(totaldays) + " days")
+        form.add_static_label('Your fee is going to be: $' + str(totalfee))
         form.add_static_label('Enter Credit Card information:') 
         # !!! Add at least two fields here, along with any additional static labels you need...
         form.add_static_label('Customer Name: ' + form.task.get_field("Name"))
         form.add_field(Type.CHOICE, "Type", labeltext="Type of Card", choices=['Visa', 'Master Card', 'Amex'], initial='Visa')
-        form.add_field(Type.INTEGER, "CardNo", labeltext="Enter Card No")
+        form.add_field(Type.SHORTSTRING, "CardNo", labeltext="Enter Card No")
         form.add_field(Type.SHORTSTRING, "Expiration Date", labeltext="Expiration Date", initial="MM/YY") 
-        form.add_field(Type.INTEGER, "CVC", labeltext="Code")
+        form.add_field(Type.SHORTSTRING, "CVC", labeltext="Code")
         
         
         #self.register_source_step("Fee", self.bill_charge_from_creator)
