@@ -40,10 +40,11 @@ class OrderTakerApplication(RoleApplication):
         This method does the actual work of building the user interface.
         '''
         # !!! improve this text...
-        form.add_static_label('Choose type of coffee and how many:') 
+        form.add_static_label('Type customer name, type of coffee and how many:') 
         # !!! Add at least two fields here, along with any additional static labels you need...
-        form.add_field(Type.SHORTSTRING, "TypeOfCoffee");
-        form.add_field(Type.SHORTSTRING, "HowMany");
+        form.add_field(Type.SHORTSTRING, "Customer Name");
+        form.add_field(Type.SHORTSTRING, "Type Of Coffee");
+        form.add_field(Type.SHORTSTRING, "How Many");
 
 if __name__ == '__main__':
     #starts up the OrderTakerApplication:

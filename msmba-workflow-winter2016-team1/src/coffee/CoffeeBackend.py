@@ -53,7 +53,7 @@ class CoffeeBackend(Backend):
         '''
         for result in results:  # repeat the following actions for each result
             # !!! Fix the line below... 
-            task = Task.construct_from_result(result, "OrderTaker", "OrderTaken");
+            task = Task.construct_from_result(result, "Barista", "DrinkPrepared");
             self.workflow.add(task) # add the new task to the workflow
             self.workflow.update_status(result, Status.COMPLETE)
 
@@ -67,7 +67,8 @@ class CoffeeBackend(Backend):
         #!!! Replace this pass, with appropriate code (using the drink_order_taken) method
         for result in results:  # repeat the following actions for each result
             # !!! Fix the line below... 
-            task = Task.construct_from_result(result, "Barista", "DrinkPrepared");
+            copyFields =['TypeOfCoffee','HowMany'];
+            task = Task.construct_from_result(result, "OrderTaker", "OrderTaken", copy=copyFields);
             self.workflow.add(task) # add the new task to the workflow
             self.workflow.update_status(result, Status.COMPLETE)
 
