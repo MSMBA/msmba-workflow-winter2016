@@ -43,6 +43,7 @@ class CarRentalBackend(Backend):
         self.register_result_listener("Agent", "Rental", self.car_order_taken)
         # !!! add a line of code here to register the step where a drink is prepared.
         self.register_result_listener("LS", "ConfirmedRental", self.car_confirmed)
+        self.register_result_listener("Cashier", "CardReceipt", self.car_payment)
 
     def car_order_taken(self, results):
         '''
@@ -53,7 +54,7 @@ class CarRentalBackend(Backend):
         '''
         for result in results:  # repeat the following actions for each result
             # !!! Fix the line below... 
-            task = Task.construct_from_result(result, "LS", "ConfirmedRental");
+            task = Task.construct_from_result(result, "Cashier", "CardReceipt");
             self.workflow.add(task) # add the new task to the workflow
             self.workflow.update_status(result, Status.COMPLETE)
 
@@ -69,6 +70,20 @@ class CarRentalBackend(Backend):
             # !!! Fix the line below... 
             self.workflow.update_status(result, Status.COMPLETE)
 
+    def car_payment(self, results):
+        '''
+        This method is called after the LS has prepared the drink.  
+        In our very simple workflow this is the last step in the process, 
+        which means that this method has a very simple job:  it just needs to mark 
+        the status of the LS's task (stored in the results variable) as Complete.  
+        '''
+        #!!! Replace this pass, with appropriate code (using the car_order_taken) method
+        
+        for result in results:  # repeat the following actions for each result
+            # !!! Fix the line below... 
+            task = Task.construct_from_result(result, "LS", "ConfirmedRental");
+            self.workflow.add(task) # add the new task to the workflow
+            self.workflow.update_status(result, Status.COMPLETE)
 '''
 Finally, this last bit of code is fine as it is and you do not need to change it.
 It initialize the backend by running the __init__ method

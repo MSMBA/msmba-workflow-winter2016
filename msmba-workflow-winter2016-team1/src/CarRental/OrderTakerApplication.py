@@ -15,6 +15,8 @@ from frontend.roleApplication import RoleApplication
 from frontend.form import Type
 from CarRental.CarRentalConstants import theflowname
 
+
+
 class OrderTakerApplication(RoleApplication):
     '''
     The OrderTakerApplication "class" is a collection of the "methods" (functions) that 
@@ -39,7 +41,9 @@ class OrderTakerApplication(RoleApplication):
         '''
         This method does the actual work of building the user interface.
         '''
+        
         # !!! improve this text...
+        form.add_static_label('') 
         form.add_static_label('Enter customer request details:') 
         # !!! Add at least two fields here, along with any additional static labels you need...
         form.add_field(Type.SHORTSTRING, "Name", labeltext="Customer Name", initial="Enter customer name")
